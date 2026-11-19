@@ -1,0 +1,51 @@
+# configs/jacquard.yaml — FISAT selective-grasp, Jacquard V2
+#
+# Jacquard is ~51k images / 11k objects. That scale changes the whole
+# calibration story: where Cornell gives ~60 calibration samples (alpha=0.05
+# uncertifiable), Jacquard gives thousands, so the strict risk budgets the paper
+# wants become reachable. The cost is training time: full Jacquard is DAYS on a
+# single T4. Use the max_* knobs to start small.
+
+data:
+  root: /content/data/jacquard    # folder holding JacquardV2_Dataset_0.. shards
+  name: jacquard
+  out_size: 224
+  use_depth: true
+  depth_kind: perfect             # 'perfect' (simulated) or 'stereo'
+  num_workers: 2
+  split_mode: object              # object hash is in the path -> EXACT disjoint
+  val_frac: 0.10
+  test_frac: 0.10                 # 10% of 51k is still ~5k test images
+  novel_frac: 0.0
+  # Development knobs. Set both to null for the full dataset. Recommended first
+  # pass: max_objects ~ 800, which keeps object-disjoint splits meaningful while
+  # finishing in hours, not days.
+  max_objects: 800
+  max_images: null
+
+train:
+  device: cuda
+  epochs: 40                      # Jacquard needs fewer epochs than Cornell:
+                                  # far more data per epoch, no augmentation
+                                  # required (the dataset is already huge)
+  batch_size: 16
+  lr: 0.001
+  patience: 8
+  dropout: 0.1                    # >0 REQUIRED for the S3 MC-dropout score
+  seed: 0
+
+uq:
+  mc_samples: 20
+  methods: [deterministic, evidential]
+
+selective:
+  # With thousands of calibration samples, the stricter budgets are reachable.
+  # Promote alpha=0.05 from "stretch" (as it was on Cornell) to a real target.
+  alpha: 0.10                     # primary
+  alpha_secondary: 0.05           # now genuinely certifiable at this n
+  alpha_stretch: 0.02             # the new frontier to report
+  delta: 0.10
+  n_min: 50
+  splits: 100
+  target_coverage: 0.85
+  three_way_fracs: [0.25, 0.45, 0.30]

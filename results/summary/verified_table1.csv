@@ -1,0 +1,7 @@
+configuration,N,success_rate,best_AURC_score,AURC,certified_coverage_a=0.15,certified_coverage_a=0.1,certified_coverage_a=0.05,certified_coverage_a=0.02,certified_coverage_a=0.01
+cornell_grconvnet,300,0.6866666666666666,s_mc,0.195395439584117,0.0,0.0,0.0,0.0,0.0
+cornell_ggcnn,300,0.63,s_mc,0.19903217455874858,0.0,0.0,0.0,0.0,0.0
+cornell_unet,300,0.8233333333333334,s_mc,0.07456345862862665,0.82,0.0,0.0,0.0,0.0
+jacquard_grconvnet,375,0.928,s_conf,0.016294288085605624,1.0,0.9946666666666667,0.6186666666666667,0.0,0.0
+jacquard_ggcnn,375,0.92,s_conf,0.020480654900382634,1.0,0.9733333333333334,0.17066666666666666,0.0,0.0
+jacquard_unet,375,0.96,s_topk,0.010622091181430125,1.0,1.0,0.9146666666666666,0.0,0.0

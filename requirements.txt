@@ -1,0 +1,12 @@
+# Minimum indicative dependencies; exact original Colab versions were not archived.
+numpy
+scipy
+pandas
+matplotlib
+PyYAML
+torch
+Pillow
+scikit-image
+imageio
+tifffile
+notebook

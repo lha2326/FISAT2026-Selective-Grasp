@@ -1,0 +1,74 @@
+[
+  {
+    "configuration": "cornell_grconvnet",
+    "N": 300,
+    "success_rate": 0.6866666666666666,
+    "best_AURC_score": "s_mc",
+    "AURC": 0.195395439584117,
+    "certified_coverage_a=0.15": 0.0,
+    "certified_coverage_a=0.1": 0.0,
+    "certified_coverage_a=0.05": 0.0,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  },
+  {
+    "configuration": "cornell_ggcnn",
+    "N": 300,
+    "success_rate": 0.63,
+    "best_AURC_score": "s_mc",
+    "AURC": 0.19903217455874858,
+    "certified_coverage_a=0.15": 0.0,
+    "certified_coverage_a=0.1": 0.0,
+    "certified_coverage_a=0.05": 0.0,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  },
+  {
+    "configuration": "cornell_unet",
+    "N": 300,
+    "success_rate": 0.8233333333333334,
+    "best_AURC_score": "s_mc",
+    "AURC": 0.07456345862862665,
+    "certified_coverage_a=0.15": 0.82,
+    "certified_coverage_a=0.1": 0.0,
+    "certified_coverage_a=0.05": 0.0,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  },
+  {
+    "configuration": "jacquard_grconvnet",
+    "N": 375,
+    "success_rate": 0.928,
+    "best_AURC_score": "s_conf",
+    "AURC": 0.016294288085605624,
+    "certified_coverage_a=0.15": 1.0,
+    "certified_coverage_a=0.1": 0.9946666666666667,
+    "certified_coverage_a=0.05": 0.6186666666666667,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  },
+  {
+    "configuration": "jacquard_ggcnn",
+    "N": 375,
+    "success_rate": 0.92,
+    "best_AURC_score": "s_conf",
+    "AURC": 0.020480654900382634,
+    "certified_coverage_a=0.15": 1.0,
+    "certified_coverage_a=0.1": 0.9733333333333334,
+    "certified_coverage_a=0.05": 0.17066666666666666,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  },
+  {
+    "configuration": "jacquard_unet",
+    "N": 375,
+    "success_rate": 0.96,
+    "best_AURC_score": "s_topk",
+    "AURC": 0.010622091181430125,
+    "certified_coverage_a=0.15": 1.0,
+    "certified_coverage_a=0.1": 1.0,
+    "certified_coverage_a=0.05": 0.9146666666666666,
+    "certified_coverage_a=0.02": 0.0,
+    "certified_coverage_a=0.01": 0.0
+  }
+]

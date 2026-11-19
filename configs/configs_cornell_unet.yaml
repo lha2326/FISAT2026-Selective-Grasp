@@ -1,0 +1,51 @@
+# configs/cornell_unet.yaml — third detector (U-Net, skip connections)
+model:
+  name: unet
+
+# configs/cornell.yaml — FISAT selective-grasp, Cornell
+data:
+  root: /content/data/cornell     # folder holding 01..10 (+ backgrounds/)
+  name: cornell
+  out_size: 224
+  use_depth: true                 # set false if your depth is .txt point clouds
+  num_workers: 2
+  split_mode: object              # folder-level; 'image' for cal/eval stage
+  val_frac: 0.10
+  test_frac: 0.30                 # Earlier this was 0.40 with val 0.15, which
+                                  # left only 285 training images (4 folders) and
+                                  # a detector too weak to succeed on ANY grasp.
+                                  # Buying calibration samples is worthless if
+                                  # the model being calibrated does not work.
+                                  # 0.30/0.10 leaves ~530 for training.
+  novel_frac: 0.0
+
+train:
+  device: cuda
+  epochs: 80                      # cheap on Cornell; early stopping ends it
+  batch_size: 16                  # T4-safe
+  lr: 0.001
+  patience: 12
+  dropout: 0.1                    # >0 REQUIRED for the S3 MC-dropout score
+  seed: 0
+
+uq:
+  mc_samples: 20
+  methods: [deterministic, evidential]
+
+selective:
+  # Budgets chosen from the calibration-size scaling measurement (see notebook
+  # section 12b), NOT from habit. At Cornell's calibration size (~150 samples)
+  # alpha=0.05 certifies almost nothing and alpha=0.10 only ~20-35% coverage,
+  # while alpha=0.15 reaches ~45-75%. Reporting a budget nothing can meet
+  # tells the reader nothing.
+  alpha: 0.15                     # primary
+  alpha_secondary: 0.10           # secondary
+  alpha_stretch: 0.05             # report as "not certifiable at this n"
+  delta: 0.10
+  n_min: 50
+  splits: 100
+  target_coverage: 0.80           # for the learned gate
+  # gate-train / calibration / evaluation. Calibration gets the LARGEST share:
+  # the gate is a small head that trains fine on less, while every certified
+  # point of coverage is bought with calibration samples.
+  three_way_fracs: [0.25, 0.45, 0.30]

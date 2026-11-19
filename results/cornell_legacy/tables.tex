@@ -1,0 +1,54 @@
+\begin{table}[t]
+\centering
+\caption{Risk--coverage summary per uncertainty score on Cornell.}
+\label{tab:scores}
+\begin{tabular}{lrrrrrrr}
+\toprule
+score & AURC & E-AURC & AUSE & R@90 & R@70 & C*(a=0.15) & C*(a=0.1) \\
+\midrule
+S1 negative peak quality & 0.264 & 0.208 & 0.208 & 0.293 & 0.267 & 0.000 & 0.000 \\
+S2 quality-map entropy & 0.240 & 0.184 & 0.184 & 0.293 & 0.286 & 0.203 & 0.000 \\
+S3 MC-dropout dispersion & 0.195 & 0.140 & 0.140 & 0.270 & 0.252 & 0.433 & 0.167 \\
+S4 evidential (epistemic) & 0.236 & 0.181 & 0.181 & 0.311 & 0.252 & 0.000 & 0.000 \\
+S4 evidential (aleatoric) & 0.246 & 0.190 & 0.190 & 0.311 & 0.262 & 0.000 & 0.000 \\
+S5 top-k disagreement & 0.258 & 0.202 & 0.204 & 0.285 & 0.252 & 0.000 & 0.000 \\
+Oracle & 0.056 & 0.000 & 0.000 & 0.237 & 0.019 & 0.807 & 0.760 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Single-threshold, conjunctive and fused rejection rules.}
+\label{tab:rules}
+\begin{tabular}{lrrr}
+\toprule
+rule & scores & AURC & C*(a=0.15) \\
+\midrule
+R1 best single & s\_mc & 0.195 & 0.433 \\
+R2 conjunctive & s\_conf AND s\_mc & 0.190 & 0.447 \\
+R2 conjunctive & s\_conf AND s\_topk & 0.240 & 0.000 \\
+R2 conjunctive & s\_conf AND s\_ev\_ep & 0.246 & 0.000 \\
+R2 conjunctive & s\_conf AND s\_ent & 0.223 & 0.243 \\
+R3 logistic fusion & s\_conf+s\_ent+s\_mc+s\_ev\_ep+s\_ev\_al+s\_topk & 0.198 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Validity of the calibrated threshold over repeated splits.}
+\label{tab:calib}
+\begin{tabular}{lrrrrrr}
+\toprule
+rule & alpha & delta & mean\_eval\_risk & violation\_rate & mean\_coverage & coverage\_sd \\
+\midrule
+naive (score=s\_mc) & 0.150 & -- & 0.222 & 0.760 & 0.324 & 0.217 \\
+ltt (score=s\_mc) & 0.150 & 0.100 & 0.000 & 0.000 & 0.000 & 0.000 \\
+coverage lost to validity & 0.150 & 0.100 & -- & -- & 0.324 & -- \\
+naive (score=s\_mc) & 0.100 & -- & 0.322 & 0.540 & 0.055 & 0.132 \\
+ltt (score=s\_mc) & 0.100 & 0.100 & 0.000 & 0.000 & 0.000 & 0.000 \\
+coverage lost to validity & 0.100 & 0.100 & -- & -- & 0.055 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,19 @@
+# Raw Cornell/Jacquard datasets are external and should not be committed.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.env.*
+!*.env.example
+*.log
+.DS_Store
+Thumbs.db
+data/raw/
+data/downloads/
+outputs/tmp/
+*.tar
+*.tar.gz
+*.zip
+# Intentionally KEEP the supplied small .npz and .pt research artifacts.

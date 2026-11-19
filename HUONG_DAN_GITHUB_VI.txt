@@ -1,0 +1,30 @@
+FISAT 2026 - BO MA NGUON + KET QUA + TOAN BO 8 CHECKPOINT HIEN CO
+
+Goi nay bao gom 68 tep goc:
+- src/: ma Python
+- notebooks/: notebook Colab
+- configs/: cau hinh
+- data/scores/: 6 tep NPZ
+- checkpoints/: 8 tep .pt (best/last cua deterministic va evidential tren Cornell va Jacquard), cung history.json
+- results/: bang va hinh ket qua
+- paper/: bai bao PDF
+- docs/, scripts/, requirements.txt, README.md
+
+LUU Y: Khong co checkpoint GG-CNN va U-Net tu cac tep nguon duoc cung cap, do do KHONG the goi la day du checkpoint cua tat ca 6 cau hinh bai bao. Khong can chay lai thi nghiem de day bo ma nay len GitHub.
+
+CACH DAY LEN GITHUB:
+1. Giai nen ZIP ra thu muc FISAT2026-selective-grasp.
+2. Mo Git Bash trong thu muc.
+3. Tao repository moi tren https://github.com/new, KHONG chon tao README.
+4. Chay cac lenh:
+   git init
+   git branch -M main
+   git add .
+   git commit -m "Archive FISAT 2026 research code and checkpoints"
+   git remote add origin https://github.com/USERNAME/FISAT2026-selective-grasp.git
+   git push -u origin main
+5. Thay USERNAME bang ten tai khoan GitHub cua ban.
+
+Neu bo ZIP nay ban dau duoc da khoi tao .git, hay kiem tra bang 'git status' va bo qua buoc 'git init' neu da co repo.
+Nen giu repo Private cho den khi kiem tra quyen chia se PDF, model weights va du lieu.
+Chi tiet cac muc thieu va gioi han tai docs/REPRODUCIBILITY_AUDIT.md.
